@@ -43,3 +43,9 @@ int main(){
     printf("bits per pixel : %d\n", bdh.bits_per_pixel);
     return 0;
 }
+
+//output
+// width : 1728
+// height : 1080
+// file size : 5598774,                  1728 * 1080 * 3 = 5598720, + 54 bits = 5598774
+// bits per pixel : 24,               8 bits each, 8 * 3 = 24      
