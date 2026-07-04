@@ -146,12 +146,35 @@ int main(){
     return 0;
 }*/
 
-int main(){
+/*int main(){
     int arr[5] = {10,20,30,40,50};
     int *ptr = &arr[0];
     for(int i = 0; i < arr[i]; i++){
         printf("%d %p %d\n",i,ptr,*ptr);
         ptr++;
     }
+    return 0;
+}*/
+
+char *my_strcat(char *dest, const char *src){
+    const char *ptr1 = src;
+    char *ptr2 = dest;
+    char ch;
+    while(*ptr2 != '\0'){
+        ptr2++;
+    }
+    do{
+        ch = *ptr1;
+        *ptr2 = ch;
+        ptr1++;
+        ptr2++;
+    }while(ch != '\0');
+    return dest;
+}
+
+int main(){
+    char dest[] = "abc";
+    char src[] = "xyz";
+    printf("%s", my_strcat(dest,src));
     return 0;
 }
