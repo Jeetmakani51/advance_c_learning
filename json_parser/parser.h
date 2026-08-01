@@ -11,5 +11,5 @@ typedef struct{
 
 Parser create_parser(char *source);
 JsonValue *parse_value(Parser *p);
-
+void advance(Parser *p);
 #endif

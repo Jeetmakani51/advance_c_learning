@@ -117,3 +117,49 @@ void free_value(JsonValue *v){
     }
     free(v);
 }
+
+void print_value(JsonValue *v, int indent){ // recursively walks the JsonValue tree and prints it
+    if(v == NULL) return;
+    switch(v -> type){
+        case JSON_STRING:
+            printf("\"%s\"", v->value.string);
+            break;
+
+        case JSON_NUMBER:
+            printf("%g", v->value.number);
+            break;
+
+        case JSON_BOOL:
+            printf("%s", v->value.boolean ? "true" : "false");
+            break;
+
+        case JSON_NULL:
+            printf("null");
+            break;
+
+        case JSON_ARRAY:
+            printf("[\n");
+            for(int i = 0; i < v->value.array.count; i++){
+                print_value(v->value.array.items[i],indent+2);
+                if(i < v->value.array.count - 1){
+                    printf(",");
+                    printf("\n");
+                }
+            }
+            printf("\n]");
+            break;
+
+        case JSON_OBJECT:
+            printf("{\n");
+            for(int i = 0; i < v->value.object.count; i++){
+                printf("\"%s\": ", v->value.object.keys[i]);
+                print_value(v->value.object.values[i],indent + 2);
+                if(i < v -> value.object.count - 1){
+                    printf(",");
+                    printf("\n");
+                }
+            }
+            printf("\n}");
+            break;
+    }
+}

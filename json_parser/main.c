@@ -1,15 +1,17 @@
 #include <stdio.h>
-#include "lexer.h"
+#include <stdlib.h>
+#include "parser.h"
+#include "value.h"
 
 int main(){
-    char *source = "{\"name\":\"Jeet\",\"age\":19,\"learning\":true,\"address\":null}";
-    Lexer l = create_lexer(source);
+    char *source = "{\"name\":\"Jeet\",\"age\":19,\"learning\":true,\"friends\":[\"Alice\",\"Bob\"],\"address\":null}";
+
+    Parser p = create_parser(source);
+    JsonValue *root = parse_value(&p);
     
-    Token t;
-    do {
-        t = next_token(&l);
-        printf("type: %d, value: %s\n", t.type, t.value ? t.value : "NULL");
-    } while(t.type != TOKEN_EOF);
-    
+    print_value(root,0);
+    printf("\n");
+
+    free_value(root);
     return 0;
 }

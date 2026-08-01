@@ -40,5 +40,6 @@ JsonValue *make_object();
 void array_push(JsonValue *arr, JsonValue *item);
 void object_push(JsonValue *obj, char *key, JsonValue *val);
 void free_value(JsonValue *v);
+void print_value(JsonValue *v, int indent);
 
 #endif
